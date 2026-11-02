@@ -2,9 +2,8 @@
 
 ## Supported versions
 
-CommitMemo is preparing its first `0.1.0` release. Security fixes target `main`
-before that release, and the latest published release afterward. Older versions
-do not have a separate maintenance commitment.
+Security fixes target `main` and the latest published release, currently `0.1.0`.
+Older versions do not have a separate maintenance commitment.
 
 ## Report a vulnerability
 
