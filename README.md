@@ -25,29 +25,40 @@ Windows, Linux, and macOS are supported.
 
 ## Installation
 
-Download `commitmemo-0.1.0.tgz` from the
-[v0.1.0 GitHub Release](https://github.com/tutuu9/CommitMemo/releases/tag/v0.1.0),
-then install the downloaded archive:
+Install from npm:
 
 ```sh
-npm install --global ./commitmemo-0.1.0.tgz
+npm install --global commitmemo
 commitmemo --help
 ```
 
-The package is not published in the npm registry yet. Install the release archive,
-or build the same package from source:
+To run a report without a global installation, use this command from a repository:
+
+```sh
+npx commitmemo --week
+```
+
+The original `v0.1.0` GitHub archive remains available as an alternative. Download
+`commitmemo-0.1.0.tgz` from the
+[v0.1.0 GitHub Release](https://github.com/tutuu9/CommitMemo/releases/tag/v0.1.0)
+and install that historical version:
+
+```sh
+npm install --global ./commitmemo-0.1.0.tgz
+```
+
+To build the current version from source:
 
 ```sh
 git clone https://github.com/tutuu9/CommitMemo.git
 cd CommitMemo
 npm ci
 npm pack
-npm install --global ./commitmemo-0.1.0.tgz
+npm install --global ./commitmemo-0.1.1.tgz
 commitmemo --help
 ```
 
-`npm pack` builds the CLI before creating the tarball. Registry installation
-instructions will be added after npm publication is confirmed.
+`npm pack` builds the CLI before creating the tarball.
 
 ## Quick start
 
