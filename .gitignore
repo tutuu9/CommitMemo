@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.test-build/
+coverage/
+*.tsbuildinfo
+*.tgz
+*.log
+.env
+.env.*
+!.env.example
+.commitmemo.local.*
+reports/
+.tmp/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
