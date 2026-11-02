@@ -1,0 +1,38 @@
+name: Feature request
+description: Describe a use case and a focused improvement.
+title: 'feat: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CommitMemo focuses on useful, local Git reports. Explain the user need before suggesting an implementation.
+        Keep examples fictional or anonymized.
+  - type: textarea
+    id: need
+    attributes:
+      label: What are you trying to do?
+      description: Describe the workflow and why the current behavior is insufficient.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest change that would solve the problem, with an example command or output if helpful.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List concrete outcomes that would make the change complete.
+      placeholder: |
+        - Given ..., running ... produces ...
+        - When ..., the command ...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and tradeoffs
+      description: Mention workarounds, added setup, or limitations worth considering.
