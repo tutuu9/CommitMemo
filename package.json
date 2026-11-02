@@ -1,6 +1,6 @@
 {
   "name": "commitmemo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turn local Git history into a daily or weekly work journal.",
   "type": "module",
   "bin": {

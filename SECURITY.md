@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Security fixes target `main` and the latest published release, currently `0.1.0`.
+Security fixes target `main` and the latest published release.
 Older versions do not have a separate maintenance commitment.
 
 ## Report a vulnerability
