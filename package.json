@@ -1,0 +1,56 @@
+{
+  "name": "commitmemo",
+  "version": "0.1.0",
+  "description": "Turn local Git history into a daily or weekly work journal.",
+  "type": "module",
+  "bin": {
+    "commitmemo": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tutuu9/CommitMemo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tutuu9/CommitMemo/issues"
+  },
+  "homepage": "https://github.com/tutuu9/CommitMemo#readme",
+  "keywords": [
+    "git",
+    "cli",
+    "journal",
+    "commits",
+    "markdown",
+    "developer-tools"
+  ],
+  "overrides": {
+    "minimatch": "^11.0.1"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test \".test-build/test/*.test.js\"",
+    "test:package": "npm run build && node scripts/package-smoke.mjs",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run test:package",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.2",
+    "eslint": "^10.14.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1"
+  }
+}

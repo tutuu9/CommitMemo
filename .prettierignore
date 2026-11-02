@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.test-build/
+coverage/
+package-lock.json
+*.tgz
+reports/

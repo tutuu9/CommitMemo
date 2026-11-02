@@ -1,0 +1,52 @@
+name: Bug report
+description: Report incorrect behavior with a reproducible example.
+title: 'bug: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use fictional or anonymized data. Do not paste private history, personal reports, credentials, or identifying paths.
+        For vulnerabilities, follow SECURITY.md instead of filing a public report.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the incorrect behavior and its effect.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the command and a minimal disposable repository setup, if possible.
+      placeholder: |
+        1. Create a temporary repository with...
+        2. Run commitmemo...
+        3. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should the report or command do?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include versions and the time zone if the issue concerns dates.
+      value: |
+        CommitMemo version:
+        Operating system:
+        Node.js version:
+        Git version:
+        Time zone:
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Additional context
+      description: Add relevant, redacted error output or other observations. Do not attach a private repository.
