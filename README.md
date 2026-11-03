@@ -60,6 +60,24 @@ commitmemo --help
 
 `npm pack` builds the CLI before creating the tarball.
 
+### Optional: GitHub Packages
+
+Version `0.1.1` also has a one-time distribution as `@tutuu9/commitmemo` in
+[GitHub Packages](https://github.com/tutuu9/CommitMemo/packages). npm remains the
+primary distribution; later versions are not automatically mirrored here.
+
+GitHub requires authentication even when installing public npm packages. Follow
+[GitHub's authentication instructions](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
+using a personal access token (classic) with the `read:packages` scope, then run:
+
+```sh
+npm install --global @tutuu9/commitmemo@0.1.1 --registry=https://npm.pkg.github.com
+commitmemo --week
+```
+
+Both distributions install the same `commitmemo` command. Use one distribution at
+a time.
+
 ## Quick start
 
 Run these commands from one of your Git repositories:
