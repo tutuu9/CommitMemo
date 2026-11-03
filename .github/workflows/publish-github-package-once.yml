@@ -1,0 +1,62 @@
+name: Publish GitHub package 0.1.1 once
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-package-0.1.1
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'tutuu9/CommitMemo' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          scope: '@tutuu9'
+      - name: Download the original release archive
+        run: >-
+          curl --fail --location --proto '=https' --tlsv1.2 --retry 3
+          --output "$RUNNER_TEMP/commitmemo-0.1.1.tgz"
+          https://github.com/tutuu9/CommitMemo/releases/download/v0.1.1/commitmemo-0.1.1.tgz
+      - name: Repack and verify the scoped package
+        run: >-
+          npm run github-package:once -- prepare
+          "$RUNNER_TEMP/commitmemo-0.1.1.tgz"
+          "$RUNNER_TEMP/commitmemo-github-0.1.1"
+      - name: Publish or verify the existing version
+        run: >-
+          npm run github-package:once -- publish
+          "$RUNNER_TEMP/commitmemo-github-0.1.1"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify the linked GitHub repository
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api --paginate 'users/tutuu9/packages?package_type=npm' \
+            --jq '.[] | select(.name == "commitmemo" or .name == "@tutuu9/commitmemo") | {name, html_url, visibility, repository: .repository.full_name}' \
+            > "$RUNNER_TEMP/github-package.json"
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync, appendFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          const metadata = JSON.parse(readFileSync(join(process.env.RUNNER_TEMP, 'github-package.json'), 'utf8'));
+          assert.equal(metadata.repository, 'tutuu9/CommitMemo');
+          console.log(JSON.stringify(metadata));
+          appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+            `Verified @tutuu9/commitmemo@0.1.1: [package](${metadata.html_url}), repository ${metadata.repository}, visibility ${metadata.visibility}.\n`);
+          NODE
